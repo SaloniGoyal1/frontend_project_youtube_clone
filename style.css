@@ -3,8 +3,7 @@ h1, p {
 }
 li{
   list-style-type: none;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 15px;
   background-color: azure;
   padding: 5px;
 }

@@ -141,7 +141,8 @@ likeButton = () => {
     <button onClick={this.addComment} style={{height:'20px'}}> Cancel</button>
     <br/><br/>
     <div style={{marginLeft:'25px'}}>
-    {this.state.listOfComments.map(eachComment => (<li>{eachComment}</li>))}
+    {this.state.listofNames.map(eachName => (<li>Name: {eachName}</li>))}
+    {this.state.listOfComments.map(eachComment => (<li><b>Comment: {eachComment}</b></li>))}
     </div>
       </div>
       </div>
