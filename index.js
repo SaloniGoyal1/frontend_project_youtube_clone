@@ -117,8 +117,8 @@ likeButton = () => {
     return (
     
       <div >
-        <input  style={{ marginLeft:"450px",marginTop:"10px",marginBottom:"10px",width:"430px"}} placeholder="Search" onChange={this.setSearchValue} /> &nbsp;
-        <button  onClick={this.searchVideo}>Search</button>
+        <input  style={{padding:'5px', marginLeft:"450px",marginTop:"10px",marginBottom:"10px",width:"430px"}} placeholder="Search" onChange={this.setSearchValue} /> &nbsp;
+        <button  onClick={this.searchVideo} style={{padding:'5px'}}>Search</button>
 
       <div>
       <hr/>
@@ -133,9 +133,9 @@ likeButton = () => {
     <button  style={{marginLeft: "870px" ,backgroundColor:"tomato",padding:'8px'}}onClick={this.likeButton}>{this.state.likeStatus}</button>
     
     <h3 style={{ marginLeft:'25px'}}> Comments</h3>
-    <input style ={{outline: 0 ,border: '0', borderBottom: '2px solid #484a56',width:'425px', marginLeft:'25px'}} onChange={this.setName} placeholder= "Your Name" value={this.state.name}/>
+    <input style ={{outline: 0 ,border: '0', borderBottom: '2px solid #484a56',width:'425px', marginLeft:'25px', padding:'4px'}} onChange={this.setName} placeholder= "Your Name" value={this.state.name}/>
 
-    <input  style ={{outline: 0,border: '0',borderBottom: '2px solid #484a56',marginLeft:"45px", width:'425px'}}onChange={this.setComment} placeholder="Your Comment" value={this.state.comment}/> 
+    <input  style ={{outline: 0,border: '0',borderBottom: '2px solid #484a56',marginLeft:"45px", width:'425px', padding:'4px'}}onChange={this.setComment} placeholder="Your Comment" value={this.state.comment}/> 
     <br/><br/>
     <button  style={{marginLeft:'785px', height:'20px'}} onClick={this.addComment}> Comment</button>&nbsp;
     <button onClick={this.addComment} style={{height:'20px'}}> Cancel</button>
