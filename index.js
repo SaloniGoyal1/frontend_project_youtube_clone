@@ -123,7 +123,7 @@ likeButton = () => {
       <div>
       <hr/>
       {this.state.isLoadingError ? (<h1>No search found</h1>): (
-        <iframe src={`https://www.youtube.com/embed/${this.state.currentVideoUrl}`} style={{height: '400px', width: '900px', float : 'left', marginLeft:'25px'}}/>
+        <iframe src={`https://www.youtube.com/embed/${this.state.currentVideoUrl}`}/>
         )}
       </div>
       <div style={{ width: '350px', float : 'right'}}>
