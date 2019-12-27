@@ -112,8 +112,8 @@ likeButton = () => {
 }
   render() {
     let videos = this.state.listOfVideos.map(eachVideo => (
-<img src={eachVideo.snippet.thumbnails.high.url} style={{ height: '250px', cursor:'pointer'}} onClick={()=> this.setCurrentUrl(eachVideo.id.videoId)} />
-        ))
+      <img src={eachVideo.snippet.thumbnails.high.url} onClick={()=> this.setCurrentUrl(eachVideo.id.videoId)}/>
+      ))
     return (
     
       <div >
@@ -132,7 +132,7 @@ likeButton = () => {
          <div style={{display: 'block', float: 'left'}}>
     <button  style={{marginLeft: "870px" ,backgroundColor:"tomato",padding:'8px'}}onClick={this.likeButton}>{this.state.likeStatus}</button>
     
-    <h3 style={{ marginLeft:'25px'}}> Comments</h3>
+    <h3>Comments</h3>
     <input style ={{outline: 0 ,border: '0', borderBottom: '2px solid #484a56',width:'425px', marginLeft:'25px', padding:'4px'}} onChange={this.setName} placeholder= "Your Name" value={this.state.name}/>
 
     <input  style ={{outline: 0,border: '0',borderBottom: '2px solid #484a56',marginLeft:"45px", width:'425px', padding:'4px'}}onChange={this.setComment} placeholder="Your Comment" value={this.state.comment}/> 
@@ -141,8 +141,8 @@ likeButton = () => {
     <button onClick={this.addComment} style={{height:'20px'}}> Cancel</button>
     <br/><br/>
     <div style={{marginLeft:'25px'}}>
-    {this.state.listofNames.map(eachName => (<li>Name: {eachName}</li>))}
-    {this.state.listOfComments.map(eachComment => (<li><b>Comment: {eachComment}</b></li>))}
+    {this.state.listofNames.map(eachName => (<li><b>{eachName}</b></li>))}
+    {this.state.listOfComments.map(eachComment => (<li>{eachComment}</li>))}
     </div>
       </div>
       </div>
