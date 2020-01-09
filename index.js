@@ -8,14 +8,14 @@ class App extends Component {
     this.state = {
       searchKeyword: 'reactjs',
       listOfVideos: [],
-      loadingStatus: null ,
-      currentVideoUrl: '',
+      loading: null ,
+      VideoUrl: '',
       name: '',
       comment: '',
-      listofNames: [],
+      listofNamesComment: [],
       listOfComments: [],
       likeStatus: 'Like',
-      isLoadingError: false
+      LoadingError: false
     };
   }
 
@@ -28,15 +28,15 @@ console.log(this.state.searchKeyword)
 
 searchVideo = async () => {
     this.setState({
-    loadingStatus: "LOADING",
-    isLoadingError: false
-}) /*AIzaSyDAyYIU0uRJadfSwFyYvrEhv86RfTGuqnM*/
+    loading: "LOADING",
+    LoadingError: false
+})
 const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=15&order=viewCount&q=${this.state.searchKeyword}&type=video&videoDefinition=high&key=AIzaSyCH763PTQN_B0LQVXdoIGt9T2w4MZ2AZJE`);
 const myJson = await response.json();
 console.log("myJson " , myJson);
 if(myJson.items.length == 0) {
   this.setState({
-    isLoadingError: true
+    LoadingError: true
   })
 }
 this.setState({
@@ -44,26 +44,26 @@ this.setState({
 })
 console.log(this.state.listOfVideos)
   this.setState({
-    loadingStatus: "LOADED"
+    loading: "LOADED"
   })
 }
 
 showMostPopularVideos = async () => {
   this.setState({
-    loadingStatus: 'LOADING'
+    loading: 'LOADING'
   })
   const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&chart=mostPopular&maxResults=15&regionCode=IN&key=AIzaSyCH763PTQN_B0LQVXdoIGt9T2w4MZ2AZJE`);
 const myJson = await response.json();
 console.log("myJson " , myJson);
 this.setState({
   listOfVideos: myJson.items,
-  loadingStatus: "LOADED"
+  loading: "LOADED"
 })
 console.log(this.state.listOfVideos)
 this.setState({
-  currentVideoUrl: this.state.listOfVideos[0].id.videoId
+  VideoUrl: this.state.listOfVideos[0].id.videoId
 })
-console.log("currentVideoUrl" , this.state.currentVideoUrl)
+console.log("currentVideoUrl" , this.state.VideoUrl)
 }
 
 componentDidMount() {
@@ -74,7 +74,7 @@ componentDidMount() {
 setCurrentUrl = (id) => {
 
   this.setState({
-    currentVideoUrl: id
+    VideoUrl: id
   })
 }
 
@@ -92,7 +92,7 @@ setComment = (event) => {
 
 addComment = () => {
   this.setState({
-    listofNames: [...this.state.listofNames, this.state.name],
+    listofNamesComment: [...this.state.listofNamesComment, this.state.name],
     listOfComments: [...this.state.listOfComments, this.state.comment],
     name: '',
     comment: ''
@@ -117,35 +117,36 @@ likeButton = () => {
     return (
     
       <div >
-        <input  style={{padding:'5px', marginLeft:"450px",marginTop:"10px",marginBottom:"10px",width:"430px"}} placeholder="Search" onChange={this.setSearchValue} /> &nbsp;
+        <input className="search" placeholder="Search" onChange={this.setSearchValue} /> &nbsp;
         <button  onClick={this.searchVideo} style={{padding:'5px'}}>Search</button>
 
       <div>
       <hr/>
-      {this.state.isLoadingError ? (<h1>No search found</h1>): (
-        <iframe src={`https://www.youtube.com/embed/${this.state.currentVideoUrl}`}/>
-        )}
+      {
+        this.state.LoadingError ? (<h1>No search found</h1>):(
+        <iframe src={`https://www.youtube.com/embed/${this.state.VideoUrl}`}/>
+      )}
       </div>
-      <div style={{ width: '350px', float : 'right'}}>
-        {this.state.loadingStatus == "LOADING" ? (<h1>Loading...</h1>) : (videos) }
-        </div>
-         <div style={{display: 'block', float: 'left'}}>
-    <button  style={{marginLeft: "870px" ,backgroundColor:"tomato",padding:'8px'}}onClick={this.likeButton}>{this.state.likeStatus}</button>
+
+      <div style={{width: '350px', float : 'right'}}>
+        {this.state.loading == "LOADING" ? (<h1>Loading...</h1>) : (videos) }
+      </div>
+      <div style={{display: 'block', float: 'left'}}>
+      <button className="likebutton" onClick={this.likeButton}>{this.state.likeStatus}</button>
     
     <h3>Comments</h3>
-    <input style ={{outline: 0 ,border: '0', borderBottom: '2px solid #484a56',width:'425px', marginLeft:'25px', padding:'4px'}} onChange={this.setName} placeholder= "Your Name" value={this.state.name}/>
-
-    <input  style ={{outline: 0,border: '0',borderBottom: '2px solid #484a56',marginLeft:"45px", width:'425px', padding:'4px'}}onChange={this.setComment} placeholder="Your Comment" value={this.state.comment}/> 
+    <input className="name" onChange={this.setName} placeholder= "Your Name" value={this.state.name}/>
+    <input className="comment" onChange={this.setComment} placeholder="Your Comment" value={this.state.comment}/> 
     <br/><br/>
-    <button  style={{marginLeft:'785px', height:'20px'}} onClick={this.addComment}> Comment</button>&nbsp;
+    <button className="commentbutton" onClick={this.addComment}> Comment</button>&nbsp;
     <button onClick={this.addComment} style={{height:'20px'}}> Cancel</button>
     <br/><br/>
+
     <div style={{marginLeft:'25px'}}>
-    {this.state.listofNames.map((eachName, index) => (<li><b>{eachName}</b><br/>{this.state.listOfComments[index]}</li>))}
-    
+    {this.state.listofNamesComment.map((eachName, index) => (<li><b>{eachName}</b><br/>{this.state.listOfComments[index]}</li>))}
     </div>
-      </div>
-      </div>
+    </div>
+    </div>
     );
   }
 }

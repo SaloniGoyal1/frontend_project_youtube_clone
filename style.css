@@ -20,3 +20,35 @@ iframe{
   float: left; 
   margin-left:25px;
 }
+.search{
+  padding:5px;
+  margin-left:450px;
+  margin-top:10px;
+  margin-bottom:10px;
+  width:430px;
+}
+.likebutton{
+  margin-left:870px;
+  background:tomato;
+  padding:8px;
+}
+.name{
+  outline: 0;
+  border:0;
+  border-bottom:2px solid #484a56;
+  width:425px;
+  margin-left:25px;
+  padding:4px;
+} 
+.comment{
+  outline: 0;
+  border: 0;
+  border-bottom:2px solid #484a56;
+  margin-left:45px;
+  width:425px;
+  padding:4px;
+}
+.commentbutton{
+  margin-left:785px;
+  height:20px; 
+}
