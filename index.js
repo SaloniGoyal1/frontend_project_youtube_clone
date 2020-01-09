@@ -30,8 +30,8 @@ searchVideo = async () => {
     this.setState({
     loadingStatus: "LOADING",
     isLoadingError: false
-})
-const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=15&order=viewCount&q=${this.state.searchKeyword}&type=video&videoDefinition=high&key=AIzaSyDAyYIU0uRJadfSwFyYvrEhv86RfTGuqnM`);
+}) /*AIzaSyDAyYIU0uRJadfSwFyYvrEhv86RfTGuqnM*/
+const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=15&order=viewCount&q=${this.state.searchKeyword}&type=video&videoDefinition=high&key=AIzaSyCH763PTQN_B0LQVXdoIGt9T2w4MZ2AZJE`);
 const myJson = await response.json();
 console.log("myJson " , myJson);
 if(myJson.items.length == 0) {
@@ -52,7 +52,7 @@ showMostPopularVideos = async () => {
   this.setState({
     loadingStatus: 'LOADING'
   })
-  const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&chart=mostPopular&maxResults=15&regionCode=IN&key=AIzaSyDAyYIU0uRJadfSwFyYvrEhv86RfTGuqnM`);
+  const response = await fetch(`https://www.googleapis.com/youtube/v3/search?part=snippet&chart=mostPopular&maxResults=15&regionCode=IN&key=AIzaSyCH763PTQN_B0LQVXdoIGt9T2w4MZ2AZJE`);
 const myJson = await response.json();
 console.log("myJson " , myJson);
 this.setState({
@@ -141,8 +141,8 @@ likeButton = () => {
     <button onClick={this.addComment} style={{height:'20px'}}> Cancel</button>
     <br/><br/>
     <div style={{marginLeft:'25px'}}>
-    {this.state.listofNames.map(eachName => (<li><b>{eachName}</b></li>))}
-    {this.state.listOfComments.map(eachComment => (<li>{eachComment}</li>))}
+    {this.state.listofNames.map((eachName, index) => (<li><b>{eachName}</b><br/>{this.state.listOfComments[index]}</li>))}
+    
     </div>
       </div>
       </div>
